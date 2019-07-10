@@ -35,6 +35,7 @@ body {
 
 <body class="container">
   <div id="Czat" class="h-100">
+
       <div class="row mb-2">
         <div class="col-12">
             <div class="btn-group btn-block">
@@ -45,11 +46,13 @@ body {
             </div>
           </div>
       </div>
+
     <div class="row overflow-auto mx-auto" style="height:40%">
       <div class="col-12 border p-0">
           <ul class="list-group" id="chat"></ul>
       </div>
     </div>
+
     <div class="row">
       <div class="col-10">
           <input type="text" class="form-control" id="msg"/>
@@ -59,6 +62,7 @@ body {
       </div>
     </div>
   </div>
+
     <div id="login">
         <div class="row">
             <div class="col-sm-10">
@@ -68,6 +72,24 @@ body {
               <button class="btn btn-outline-primary btn-block" id="loginbutton">Enter</button>
             </div>
         </div>
+    </div>
+
+    <div id="Rooms">
+
+      <div class="row">
+        <div class="col-2">
+            <button class="btn btn-outline-primary btn-block" id="CreateNewRoom">New Room</button>
+        </div>
+        <div class="col-10">
+          <input placeholder="Room name" class="form-control text-center" id="newRoom"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+            <ul class="list-group" id="roomList"> </ul>
+        </div>
+      </div>
     </div>
 </body>
 
