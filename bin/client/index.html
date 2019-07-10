@@ -2,15 +2,13 @@
 <html>
 <head>
 <title>Czat</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font: 13px Helvetica, Arial; }
-    #container { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-    #container>input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-    #container>button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-    #chat { list-style-type: none; margin: 0; padding: 0; }
-    #chat li { padding: 5px 10px; }
-    #chat li:nth-child(odd) { background: #eee; }
   #login>div
   {
     position: absolute;
@@ -20,44 +18,14 @@
     width: 80%;
     text-align:center;
   }
-  #username
-  {
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    width:100%;
-    text-align:center;
-    font-size: 16px;
-  }
-  #loginbutton
-  {
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-    background-color: white; 
-    color: black; 
-    border: 2px solid #4CAF50;
-  }
-  #loginbutton:hover
-  {
-    background-color: #4CAF50;
-    color: white;
-  }
-  #cssList
-  {
-    font-size:16px;
-  }
-  #cssList:hover
-  {
-    cursor:pointer;
-  }
-</style>
+  html,
+body {
+    height: 100%;
+}
+
+
+
+  </style>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -65,17 +33,40 @@
   <script src="client.bundle.js"></script>
 </head>
 
-<body>
-    <div id="cssList">Lista Obecności<ul id="userlist"></ul></div>
-    <ul id="chat"></ul>
-    <div id="container">
-        <input type="text" id="msg"/>
-        <button id="submit">Wyślij</button>
+<body class="container">
+  <div id="Czat" class="h-100">
+      <div class="row mb-2">
+        <div class="col-12">
+            <div class="btn-group btn-block">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                  Użytkownicy
+                </button>
+                <ul id="userlist" class="dropdown-menu"></ul>
+            </div>
+          </div>
+      </div>
+    <div class="row overflow-auto mx-auto" style="height:40%">
+      <div class="col-12 border p-0">
+          <ul class="list-group" id="chat"></ul>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-10">
+          <input type="text" class="form-control" id="msg"/>
+      </div>
+      <div class="col-2">
+          <button class="btn btn-outline-primary btn-block" id="submit">Wyślij</button>
+      </div>
+    </div>
+  </div>
     <div id="login">
-        <div>
-        <input placeholder="Username" id="username"/>
-        <button id="loginbutton">Enter</button>
+        <div class="row">
+            <div class="col-sm-10">
+              <input placeholder="Username" class="form-control text-center" id="username"/>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-outline-primary btn-block" id="loginbutton">Enter</button>
+            </div>
         </div>
     </div>
 </body>

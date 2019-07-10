@@ -1,5 +1,6 @@
 import $ from "jquery"
 import io from "socket.io-client"
+import { KeyObject } from "crypto";
 
 class Client
 {
@@ -16,6 +17,7 @@ class Client
 
     constructor ()
     {
+        $("#Czat").hide()
         this.sendButton = $("#submit")
         this.msgArea = $("#msg")
         this.chatArea = $("#chat")
@@ -23,11 +25,6 @@ class Client
         this.inputUsername = $("#username")
         this.loginDiv = $("#login")
         this.listaObecnosci = $("#userlist")
-
-        this.listaObecnosci.hide();
-        $('#cssList').click(function() {
-            $(this).find('ul').slideToggle();
-        });
     }
 
     sendMsg(msg: string) {
@@ -36,7 +33,7 @@ class Client
 
     reciveMsg(msg: string)
     {
-        this.chatArea.append($('<li>').text(msg))
+        this.chatArea.append($('<li>').html(msg).addClass("list-group-item"))
     }
     login()
     {
@@ -50,10 +47,10 @@ class Client
         this.socket.on("UpdateUsers",(users)=>{
             this.listaObecnosci.empty()
             users.forEach(element => {
-                this.listaObecnosci.append($('<li>').text(element))
+                this.listaObecnosci.append($('<li>').text(element).addClass("dropdown-item"))
             });
         })
-        
+        $("#Czat").show()
     }
 };
 $(function () {
@@ -67,5 +64,10 @@ $(function () {
     client.loginButton.click(function(e)
     {
         client.login()
+    })
+    $(document).keydown(function (e) {
+        if (e.keyCode == 13) {
+            client.sendButton.click()
+        }
     })
 })

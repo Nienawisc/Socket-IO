@@ -22,7 +22,7 @@ io.on('connection',function(client)
     }
   })
   client.on('msg',function(msg){
-    msg = currentConnections[client.id].login+": "+ msg
+    msg = "<strong>"+currentConnections[client.id].login+"</strong>: "+ msg
     console.log(msg)
     io.emit('msg',msg)
   })
