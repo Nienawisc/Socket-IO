@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "sourceMap": true,
+      "outDir": "./bin",
+      "removeComments": true,
+      "allowJs": false,
+      /* Strict Type-Checking Options */
+      "strict": true,
+      "noImplicitAny": false,
+      "strictNullChecks": true,
+      "alwaysStrict": true,
+      /* Module Resolution Options */
+      "moduleResolution": "node",
+      "baseUrl": "./src",
+      "esModuleInterop": true
+    },
+    "include": [
+      "./src/**/*"
+    ]
+  }
