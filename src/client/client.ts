@@ -21,10 +21,15 @@ class Client
 
     socket?: SocketIOClient.Socket
 
+    RoomsContent: string
+    CzatContent: string
+
     constructor ()
     {
-        $("#Czat").hide()
-        $("#Rooms").hide()
+        this.RoomsContent = $("#Rooms")[0].outerHTML
+        this.CzatContent = $("#Czat")[0].outerHTML
+        $("#Czat").remove()
+        $("#Rooms").remove()
         this.sendButton = $("#submit")
         this.msgArea = $("#msg")
         this.chatArea = $("#chat")
@@ -41,6 +46,21 @@ class Client
         this.roomName = $("#newRoom")
         this.rooms.on('click','li',(e)=>{
             this.JoinToRoom(<string>$(e.target).attr("name"))
+        })
+        $("#exitButton").click((e)=>{
+            if(this.socket)this.socket.emit("LeaveRoom",this.currentRoom)
+            this.currentRoom="";
+            this.AddToBody(this.RoomsContent)
+            $("#Czat").remove()
+        })
+        this.sendButton.click((e)=>{
+            let msg  = <string>this.msgArea.val()
+            this.sendMsg(msg,this.currentRoom);
+            this.msgArea.val('')
+        })
+
+        this.loginButton.click((e)=>{
+            this.login()
         })
     }
 
@@ -63,7 +83,7 @@ class Client
         this.reciveMsg()
         this.UpdatePlayers()
 
-        $("#Rooms").show()
+        this.AddToBody(this.RoomsContent)
         this.UpdateRooms()
     }
     UpdatePlayers()
@@ -96,22 +116,54 @@ class Client
             this.currentRoom = roomName
             this.socket.emit("JoinRoom",roomName);
             $("#Rooms").remove()
-            $("#Czat").show()
+            this.AddToBody(this.CzatContent)
         }
+    }
+    AddToBody(html:string)
+    {
+        $("body").append(html)
+        this.CheckHTMLElements()
+
+    }
+    CheckHTMLElements()
+    {
+        this.sendButton = $("#submit")
+        this.msgArea = $("#msg")
+        this.chatArea = $("#chat")
+        this.loginButton = $("#loginbutton")
+        this.inputUsername = $("#username")
+        this.loginDiv = $("#login")
+        this.listaObecnosci = $("#userlist")
+
+        this.rooms = $("#roomList")
+        this.CreateNewRoom = $("#CreateNewRoom")
+        this.CreateNewRoom.click((e)=>{
+            if(this.socket) this.JoinToRoom(<string>this.roomName.val())
+        })
+        this.roomName = $("#newRoom")
+        this.rooms.on('click','li',(e)=>{
+            this.JoinToRoom(<string>$(e.target).attr("name"))
+        })
+        $("#exitButton").click((e)=>{
+            if(this.socket)this.socket.emit("LeaveRoom",this.currentRoom)
+            this.currentRoom="";
+            this.AddToBody(this.RoomsContent)
+            $("#Czat").remove()
+        })
+
+        this.sendButton.click((e)=>{
+            let msg  = <string>this.msgArea.val()
+            this.sendMsg(msg,this.currentRoom);
+            this.msgArea.val('')
+        })
+
+        this.loginButton.click((e)=>{
+            this.login()
+        })
     }
 };
 $(function () {
     let client = new Client()
-    client.sendButton.click(function(e){
-        e.preventDefault();
-        let msg  = <string>client.msgArea.val()
-        client.sendMsg(msg,client.currentRoom);
-        client.msgArea.val('')
-    });
-    client.loginButton.click(function(e)
-    {
-        client.login()
-    })
     $(document).keydown(function (e) {
         if (e.keyCode == 13) {
             client.sendButton.click()

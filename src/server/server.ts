@@ -48,7 +48,16 @@ io.on('connection',function(client)
     console.log(currentConnections[client.id].login+" join to room "+ roomName)
     io.emit('UpdateUsers',newUsers)
     updateUser()
-})
+  })
+
+    client.on("LeaveRoom",(room)=>{
+      console.log(currentConnections[client.id].login+" leave room "+ room)
+      client.leave(room)
+      currentConnections[client.id].room=""
+      UpdateRooms()
+      updateUser()
+    })
+
 });
 
 http.listen(8080, function(){
