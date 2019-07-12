@@ -88,3 +88,5 @@ typings/
 .dynamodb/
 
 bin/client/client.bundle.js
+
+bin/client/admin.bundle.js

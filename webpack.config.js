@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = {
+module.exports = [{
     entry: './src/client/client.ts',
     module: {
       rules: [
@@ -19,4 +19,25 @@ module.exports = {
       path: path.resolve(__dirname, 'bin/client')
     },
     devtool: 'inline-source-map'
-  };
+  },
+  {
+    entry: './src/client/admin.ts',
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: "ts-loader",
+          exclude: /node_modules/,
+        }
+      ]
+    },
+    resolve: {
+      extensions: [ '.tsx', '.ts', '.js' ]
+    },
+    output: {
+      filename: 'admin.bundle.js',
+      path: path.resolve(__dirname, 'bin/client')
+    },
+    devtool: 'inline-source-map'
+  },
+];
