@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Czat</title>
+<title>Czat Admin</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <style>
-  #login>div
-  {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    text-align:center;
-  }
   html,
 body {
     height: 100%;
@@ -27,46 +20,51 @@ body {
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
-  <script src="client.bundle.js"></script>
-
+  <script src="admin.bundle.js"></script>
 </head>
 
 <body class="container">
   <div id="Czat" class="h-100">
-      <div class="row mb-2">
-        <div class="col-12">
-            <div class="btn-group btn-block">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                  Użytkownicy (<span id="NOusers"></span>)
-                </button>
-                <ul id="userlist" class="dropdown-menu w-100"></ul>
-            </div>
-          </div>
-      </div>
+    <div class="row mx-auto">
+        <div class="col-12 btn bg-primary text-white">
+            Panel administratorski
+        </div>
+    </div>
     <div class="row overflow-auto mx-auto" style="height:40%">
       <div class="col-12 border p-0">
           <ul class="list-group" id="chat"></ul>
       </div>
     </div>
     <div class="row">
-      <div class="col-10">
+      <div class="col-8">
           <input type="text" class="form-control" id="msg"/>
       </div>
       <div class="col-2">
           <button class="btn btn-outline-primary btn-block" id="submit">Wyślij</button>
       </div>
+      <div class="col-2">
+          <button class="btn btn-primary btn-block" id="disChatButton">ON</button>
+      </div>
     </div>
-  </div>
-    <div id="login">
-        <div class="row">
-            <div class="col-sm-10">
-              <input placeholder="Username" class="form-control text-center" id="username"/>
-            </div>
-            <div class="col-sm-2">
-              <button class="btn btn-outline-primary btn-block" id="loginbutton">Zaloguj</button>
-            </div>
-        </div>
-    </div>
-</body>
 
+    <div class="row">
+      <div class="col-12 text-center"><h2>Zarządzaj użytkownikami:</h2></div>
+    </div>
+
+    <div class="row">
+      <div class="col-12"><h3>Aktualnie jest <span id="NOusers"></span> na czacie.</h3></div>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Użytkownik</th>
+          <th scope="col">Akcje</th>
+        </tr>
+      </thead>
+      <tbody id="userlist"></tbody>
+    </table>
+  </div>
+</body>
 </html>
