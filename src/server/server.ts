@@ -31,6 +31,7 @@ router.get('/message',(req,res)=>{
   console.log(msg)
   io.emit('msg',msg)
   admin.emit('msg',msg)
+  res.send("Wysłano wiadomość")
 })
 
 app.use(express.static(__dirname +'/../../bin/client'),router)
