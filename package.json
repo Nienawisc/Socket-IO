@@ -24,11 +24,11 @@
   "devDependencies": {
     "@types/jquery": "^3.3.30",
     "@types/socket.io": "^2.1.2",
-    "ts-loader": "^6.0.4",
+    "ts-loader": "^9.4.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
     "typescript": "^3.5.3",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }
